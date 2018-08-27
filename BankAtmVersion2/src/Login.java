@@ -2,19 +2,57 @@ import java.awt.EventQueue;
 import java.sql.*;
 import javax.swing.*;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import java.awt.Toolkit;
-public class Login {
+public class Login extends JFrame{
 
-	private JFrame frmMiniAtm;
+	/**
+	 * 
+	 */
+	
+	private static JFrame frmMiniAtm;
 
 	/**
 	 * Launch the application.
+	 * @return 
 	 */
+	//@SuppressWarnings("static-access")
+	/*public void RSize()
+	{
+	Dimension screenSize=Toolkit.getDefaultToolkit().getScreenSize();
+	int width=(int)screenSize.getWidth();
+	int height=(int)screenSize.getHeight();
+	setSize(width-50,height-50);
+	setVisible(true);
+	//frmMiniAtm.setSize(screenSize.width,screenSize.height);
+	//frmMiniAtm.setState(frmMiniAtm.MAXIMIZED_BOTH);
+	}*/
 	public static void main(String[] args) {
+		
+		
+		
+	//	frmMiniAtm.setBounds(Integer.MAX_VALUE,25,Integer.MAX_VALUE,500);
+		
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (InstantiationException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IllegalAccessException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (UnsupportedLookAndFeelException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -35,6 +73,8 @@ public class Login {
 	 */
 	
 	public Login() {
+	
+		
 		initialize();
 		connection=SqlConnection.dbConnector();
 		
@@ -44,13 +84,15 @@ public class Login {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
 		frmMiniAtm = new JFrame();
 		frmMiniAtm.setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/com/sun/java/swing/plaf/windows/icons/Computer.gif")));
 		frmMiniAtm.setForeground(new Color(0, 128, 128));
 		frmMiniAtm.setTitle("MINI ATM");
 		frmMiniAtm.setBackground(new Color(255, 255, 255));
-		frmMiniAtm.setBounds(100, 100, 795, 508);
+		frmMiniAtm.setBounds(100, 100, 791, 508);
 		frmMiniAtm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		frmMiniAtm.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
@@ -59,8 +101,9 @@ public class Login {
 		frmMiniAtm.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Raksh\\Downloads\\LKqGil5J_400x400.png"));
+		JLabel lblNewLabel = new JLabel("");
+		Image img = new ImageIcon(this.getClass().getResource("/geek.png")).getImage(); 
+		lblNewLabel.setIcon(new ImageIcon(img));
 		lblNewLabel.setBounds(0, 0, 389, 400);
 		panel.add(lblNewLabel);
 		
@@ -120,6 +163,7 @@ public class Login {
 		panel_1.add(rdbtnCs);
 		
 		JButton btnNewButton = new JButton("LOGIN");
+		btnNewButton.setFont(new Font("Segoe Print", Font.BOLD, 14));
 		btnNewButton.setBackground(SystemColor.activeCaption);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -167,9 +211,15 @@ public class Login {
 		panel_1.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("CANCEL");
+		btnNewButton_1.setFont(new Font("Segoe Print", Font.BOLD, 14));
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmMiniAtm.dispose();
+			}
+		});
 		btnNewButton_1.setBackground(SystemColor.activeCaption);
 		btnNewButton_1.setForeground(SystemColor.desktop);
-		btnNewButton_1.setBounds(255, 380, 89, 23);
+		btnNewButton_1.setBounds(236, 380, 108, 23);
 		panel_1.add(btnNewButton_1);
 		
 		passwordField = new JPasswordField();
@@ -178,6 +228,18 @@ public class Login {
 		panel_1.add(passwordField);
 		
 		JButton btnNewUserSignup = new JButton("New User? Signup");
+		btnNewUserSignup.setFont(new Font("Segoe Print", Font.BOLD, 14));
+		btnNewUserSignup.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			   Register R=new Register();
+			   frmMiniAtm.dispose();
+			   R.setVisible(true);
+
+
+			}
+		});
 		btnNewUserSignup.setBackground(SystemColor.inactiveCaptionBorder);
 		btnNewUserSignup.setBounds(134, 435, 162, 23);
 		panel_1.add(btnNewUserSignup);

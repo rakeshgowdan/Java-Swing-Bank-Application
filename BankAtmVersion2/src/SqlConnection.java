@@ -12,8 +12,10 @@ public class SqlConnection {
 	    	Connection conn = DriverManager.getConnection (url, "root", "root");
 	    	/*Class.forName("org.mysql.JDBC");
 	    	Connection conn=DriverManager.getConnection("jdbc:mysql://localhost//3306", "root", "root");*/
-	    	JOptionPane.showMessageDialog(null, "connection succesfull");
+	    	//JOptionPane.showMessageDialog(null, "connection succesfull");
 	    	return conn;
+	    	//Login L=new Login();
+	    	
 	    }
 	    catch(Exception e)
 	    {
